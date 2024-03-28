@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
+class Project extends Model
+{
+    use HasFactory;
+
+    protected $table = 'projects';
+    public $timestamps = false; // override default timestamps which are coming from the parent class, here we do not need created_at our updated_at
+    protected $fillable = [
+        'id',
+        'name'
+    ];
+
+    public function tasks(): HasMany {
+        return $this->hasMany(Task::class);
+    }
+}
